@@ -174,21 +174,24 @@ require 'header.php';
       <label for="">Laser</label>
       <input class="form-control" type="text" name="laser" id="laser" placeholder="Laser">
    </div>
+
    <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Notas</label>
       <input class="form-control" type="text" name="notas" id="notas" placeholder="Notas">
    </div>
+
     <div class="form-group col-lg-6 col-md-6 col-xs-12" id="claves" required>
       <label for="">ID</label>
-   
       <input class="form-control" type="text" name="codigo_persona" id="codigo_persona" maxlength="64" placeholder="ID">
     </div>
+
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Imagen:</label>
       <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="imagen" id="imagen">
       <input type="hidden" name="imagenactual" id="imagenactual">
       <img src="" alt="" width="150px" height="120" id="imagenmuestra">
     </div>
+    
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>  Guardar</button>
       <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>

@@ -11,7 +11,7 @@ $accion=isset($_POST["accion"])? limpiarCadena($_POST["accion"]):"";
 $nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
 $funda_bolsa=isset($_POST["funda_bolsa"])? limpiarCadena($_POST["funda_bolsa"]):"";
-$login=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
+$login=isset($_POST["codigo_persona"])? limpiarCadena($_POST["codigo_persona"]):"";/*isset($_POST["login"])? limpiarCadena($_POST["login"]):"";*/
 $hibridos=isset($_POST["hibridos"])? limpiarCadena($_POST["hibridos"]):"";
 $iddepartamento=isset($_POST["iddepartamento"])? limpiarCadena($_POST["iddepartamento"]):"";
 $idtipousuario=isset($_POST["idtipousuario"])? limpiarCadena($_POST["idtipousuario"]):"";
@@ -22,7 +22,7 @@ $funda_hibridos=isset($_POST["funda_hibridos"])? limpiarCadena($_POST["funda_hib
 $fierros=isset($_POST["fierros"])? limpiarCadena($_POST["fierros"]):"";
 $fundas_fierros=isset($_POST["fundas_fierros"])? limpiarCadena($_POST["fundas_fierros"]):"";
 $put=isset($_POST["put"])? limpiarCadena($_POST["put"]):"";
-$fundas_put=isset($_POST["fundas_put"])? limpiarCadena($_POST["fundas_put"]):"";//******************************++modificacion */
+$fundas_put=isset($_POST["fundas_put"])? limpiarCadena($_POST["fundas_put"]):"";
 $tfundas=isset($_POST["tfundas"])? limpiarCadena($_POST["tfundas"]):"";
 $sombrilla=isset($_POST["sombrilla"])? limpiarCadena($_POST["sombrilla"]):"";
 $toalla=isset($_POST["toalla"])? limpiarCadena($_POST["toalla"]):"";
@@ -34,8 +34,12 @@ $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 $usuariocreado=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $idmensaje=isset($_POST["idmensaje"])? limpiarCadena($_POST["idmensaje"]):"";
 
-
 switch ($_GET["op"]) {
+	/*
+	function limpiarCadena($cadena){
+		return htmlspecialchars(trim($cadena), ENT_QUOTES, 'UTF-8');
+	}*/
+/*
 	case 'guardaryeditar':
 
 		if (!file_exists($_FILES['imagen']['tmp_name'])|| !is_uploaded_file($_FILES['imagen']['tmp_name'])) {
@@ -53,15 +57,68 @@ switch ($_GET["op"]) {
 		$clavehash=hash("SHA256", $password);
 
 		if (empty($idusuario)) {
-			$idusuario=$_SESSION["idusuario"];//**********************+modificacion */
+			$idusuario=$_SESSION["idusuario"];
 			$rspta=$usuario->insertar($accion,$nombre,$apellidos,$funda_bolsa,$login,$hibridos,$iddepartamento,$idtipousuario,$email,$funda_maderas,$funda_hibridos,$fierros,$fundas_fierros,$put,$fundas_put,$tfundas,$sombrilla,$toalla,$sbolas,$laser,$notas,$clavehash,$imagen,$usuariocreado,$codigo_persona);
 			echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar todos los datos del usuario";
 		}
-		else {//******************se realizo modificacion */
+		else {
 			$rspta=$usuario->editar($idusuario,$accion,$nombre,$apellidos,$funda_bolsa,$login,$hibridos,$iddepartamento,$idtipousuario,$email,$funda_maderas,$funda_hibridos,$fierros,$fundas_fierros,$put,$fundas_put,$fundas_put,$tfundas,$sombrilla,$toalla,$sbolas,$laser,$notas,$imagen,$usuariocreado,$codigo_persona);
 			echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar los datos";
 		}
-	break;
+	break;*/
+
+	case 'guardaryeditar':
+
+		try {
+			// Validación de imagen
+			if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])) {
+				$imagen = $_POST["imagenactual"];
+			} else {
+				$ext = explode(".", $_FILES["imagen"]["name"]);
+				if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") {
+					$imagen = round(microtime(true)) . '.' . end($ext);
+					if (!move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen)) {
+						throw new Exception("Error al mover la imagen al directorio de destino.");
+					}
+				} else {
+					throw new Exception("Formato de imagen no válido. Solo se permiten JPG, JPEG y PNG.");
+				}
+			}
+	
+			// Validación de datos críticos
+			if (empty($login)) {
+				throw new Exception("El valor de login es: nada");
+			}
+	
+			// Hash para la contraseña
+			$clavehash = hash("SHA256", $password);
+	
+			// Insertar o editar datos
+			if (empty($idusuario)) {
+				$idusuario = $_SESSION["idusuario"];
+				$rspta = $usuario->insertar($accion, $nombre, $apellidos, $funda_bolsa, $login, $hibridos, $iddepartamento, $idtipousuario, $email, $funda_maderas, $funda_hibridos, $fierros, $fundas_fierros, $put, $fundas_put, $tfundas, $sombrilla, $toalla, $sbolas, $laser, $notas, $clavehash, $imagen, $usuariocreado, $codigo_persona);
+				
+				if ($rspta) {
+					echo "Datos registrados correctamente";
+				} else {
+					throw new Exception("Error en la consulta de inserción. Verifica la estructura de la tabla y los datos enviados.");
+				}
+			} else {
+				$rspta = $usuario->editar($idusuario, $accion, $nombre, $apellidos, $funda_bolsa, $login, $hibridos, $iddepartamento, $idtipousuario, $email, $funda_maderas, $funda_hibridos, $fierros, $fundas_fierros, $put, $fundas_put, $fundas_put, $tfundas, $sombrilla, $toalla, $sbolas, $laser, $notas, $imagen, $usuariocreado, $codigo_persona);
+				
+				if ($rspta) {
+					echo "Datos actualizados correctamente";
+				} else {
+					throw new Exception("Error en la consulta de actualización. Verifica la estructura de la tabla y los datos enviados.");
+				}
+			}
+	
+		} catch (Exception $e) {
+			echo "Ocurrió un error: " . $e->getMessage();
+		}
+	
+		break;
+	
 	
 
 	case 'desactivar':
