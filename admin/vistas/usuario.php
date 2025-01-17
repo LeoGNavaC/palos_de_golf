@@ -88,7 +88,7 @@
 </div>
 
 <div class="panel-body" id="formularioregistros">
-  <form action="" name="formulario" id="formulario" method="POST">
+  <form action="" name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
 
     <!--*********************************************************************************************Input tipo usuario*************************************************************************-->
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
@@ -223,7 +223,7 @@
       <input class="form-control" type="text" name="codigo_persona" id="codigo_persona" maxlength="64" placeholder="ID">
     </div>
 
-  <!--********************************************************************************************Boton de imagen********************************************************************************-->
+    <!--********************************************************************************************Boton de imagen********************************************************************************-->
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Deseas modificar la imagen:</label>
       <select id="opcionIm" onchange="mostrarIm()">
@@ -231,63 +231,88 @@
         <option value="Si">Si</option>
       </select>
     </div>
-    
-    <!-- Div para si -->
+
+    <!-- Div para sí -->
     <div id="divImSi" class="form-group col-lg-6 col-md-6 col-xs-12" style="display:none">
-      <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="imagenSi" id="imagen" value="1">
+      <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="" id="imagenSi">
       <input type="hidden" name="imagenactual" id="imagenactual">
       <img src="" alt="" width="150px" height="120" id="imagenmuestra">
     </div>
 
     <!-- Div para no -->
     <div id="divImNo" class="form-group col-lg-6 col-md-6 col-xs-12" style="display:none">
-      <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="imagenNo" id="imagen" value="2">
+      <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="" id="imagenNo">
       <input type="hidden" name="imagenactual" id="imagenactual">
       <img src="" alt="" width="150px" height="120" id="imagenmuestra">
     </div>
 
     <script>
-      function mostrarIm(){
+      function mostrarIm() {
         var opcionS = document.getElementById("opcionIm").value;
-        var inputImS = document.getElementsByName("imagenSi")[0];
-        var inputImN = document.getElementsByName("imagenNo")[1];
+
         var divImSi = document.getElementById("divImSi");
         var divImNo = document.getElementById("divImNo");
 
+        var inputImS = document.getElementById("imagenSi");
+        var inputImN = document.getElementById("imagenNo");
+
         if (opcionS === "Si") {
-          divImSi.style.display = "block";
-          
-          inputImS.disabled = false;
-          inputImN.disabled = true;
-          
           inputImS.name = "imagen";
           inputImN.name = "";
-        } else {
-          divImSi.style.display = "none";          
-          
-          inputImS.disabled = true;
-          inputImN.disabled = false;
-          
+
+          divImSi.style.display = "block";
+          divImNo.style.display = "none";
+
+          divImSi.disabled = false;
+          divImNo.disabled = true;
+
+          console.log("Holaaa estamos en si");
+
+        } else if (opcionS === "No") {
           inputImS.name = "";
           inputImN.name = "imagen";
+
+          divImSi.style.display = "none";
+          divImNo.style.display = "no";
+
+          divImSi.disabled = true;
+          divImNo.disabled = false;
+
+          console.log("Holaaaaa estamos en no imagen");
+
+        } else {
+          inputImS.name = "";
+          inputImN.name = "imagen";
+
+          divImSi.style.display = "none";
+          divImNo.style.display = "no";
+
+          divImSi.disabled = true;
+          divImNo.disabled = false;
+
+          console.log("Holaaaaa estamos en no imagen");
         }
       }
     </script>
+
     <!--***************************************************************************************Boton de aceptar o cancelar**********************************************************************-->
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button class="btn btn-primary" type="submit" id="btnGuardar" onclick="resetSelect()"><i class="fa fa-save"></i>  Guardar</button>
-      <button class="btn btn-danger" onclick="cancelarform();" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+      <button class="btn btn-danger" onclick="cancelarform();" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</buttotton>
 
       <script>
         function resetSelect() {
-          var opcionSe2 = document.getElementById("opcionIm");
-          var opcionSe1 = document.getElementById("opcionIm").value;
-          var divImp = document.getElementById("divIm");
+          var opcionSe1 = document.getElementById("opcionIm").value; //optenemos Si y No
+          var opcionSe2 = document.getElementById("opcionIm"); // Le asignamos un index
+          var divImS = document.getElementById("divImSi");
+          var divImN = document.getElementById("divImNo");
           if (opcionSe1 === "Si") {
-            divImp.style.display = "none";
+            divImS.style.display = "none";
+            divImN.style.display = "none";
             opcionSe2.selectedIndex = 0;
-          } else {
-            divImp.style.display = "none";
+          } else if (opcionSe1 === "No"){
+            divImS.style.display = "none";
+            divImN.style.display = "none";
             opcionSe2.selectedIndex = 0;
           }
         }

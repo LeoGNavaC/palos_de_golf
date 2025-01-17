@@ -57,6 +57,7 @@ function limpiar(){
 	$("#laser").val("");
 	$("#notas").val("");
 	$("#codigo_persona").val("");
+	$("#imagen").val("");
 	$("#imagenmuestra").attr("src","");
 	$("#imagenactual").val("");
 	$("#idusuario").val("");
@@ -207,6 +208,7 @@ function mostrar(idusuario){
 			$("#notas").val(data.notas);
             //$("#login").val(data.login);
             $("#codigo_persona").val(data.codigo_persona);
+			$("#imagen").val(data.imagen);
             $("#imagenmuestra").show();
             $("#imagenmuestra").attr("src","../files/usuarios/"+data.imagen);
             $("#imagenactual").val(data.imagen);
