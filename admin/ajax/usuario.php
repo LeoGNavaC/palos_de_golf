@@ -33,12 +33,13 @@ $codigo_persona=isset($_POST["codigo_persona"])? limpiarCadena($_POST["codigo_pe
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 $usuariocreado=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $idmensaje=isset($_POST["idmensaje"])? limpiarCadena($_POST["idmensaje"]):"";
+/*
+function limpiarCadena($cadena){
+	return htmlspecialchars(trim($cadena), ENT_QUOTES, 'UTF-8');
+}*/
 
 switch ($_GET["op"]) {
-	/*
-	function limpiarCadena($cadena){
-		return htmlspecialchars(trim($cadena), ENT_QUOTES, 'UTF-8');
-	}*/
+	
 /*
 	case 'guardaryeditar':
 
