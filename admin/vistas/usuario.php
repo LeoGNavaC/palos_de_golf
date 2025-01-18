@@ -82,6 +82,7 @@ require 'header.php';
     </tfoot>   
   </table>
 </div>
+
 <div class="panel-body" id="formularioregistros">
   <form action="" name="formulario" id="formulario" method="POST">
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
