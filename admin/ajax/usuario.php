@@ -104,10 +104,10 @@ switch ($_GET["op"]) {
 					throw new Exception("Error en la consulta de inserción. Verifica la estructura de la tabla y los datos enviados.");
 				}
 			} else {
-				$rspta = $usuario->editar($idusuario, $accion, $nombre, $apellidos, $funda_bolsa, $login, $hibridos, $iddepartamento, $idtipousuario, $email, $funda_maderas, $funda_hibridos, $fierros, $fundas_fierros, $put, $fundas_put, $fundas_put, $tfundas, $sombrilla, $toalla, $sbolas, $laser, $notas, $imagen, $usuariocreado, $codigo_persona);
+				$rspta = $usuario->editar($idusuario, $accion, $nombre, $apellidos, $funda_bolsa, $login, $hibridos, $iddepartamento, $idtipousuario, $email, $funda_maderas, $funda_hibridos, $fierros, $fundas_fierros, $put, $fundas_put, $tfundas, $sombrilla, $toalla, $sbolas, $laser, $notas, $imagen, $usuariocreado, $codigo_persona);
 				
 				if ($rspta) {
-					echo "Datos actualizados correctamente";
+					echo "Datos actualizados correctamente hola mundo";
 				} else {
 					throw new Exception("Error en la consulta de actualización. Verifica la estructura de la tabla y los datos enviados.");
 				}
