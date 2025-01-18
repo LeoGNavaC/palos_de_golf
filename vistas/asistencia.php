@@ -50,8 +50,16 @@
      
         <input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones">
 
+        <label style="margin:10px">
+          <input type="checkbox" name="entrada" id="entrada" value="1"> Entrada
+        </label>
+        
+        <label>
+          <input type="checkbox" name="salida" id="salida" value="2"> Salida
+        </label>
+
         <div class="input-group-btn">
-          
+
           <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right text-muted"></i></button>
         </div>
       </div>

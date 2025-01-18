@@ -13,32 +13,30 @@ $("#formulario").on("submit",function(e){
 function limpiar(){
 	$("#codigo_persona").val("");
 	$("#observaciones").val("");
+	$("#entrada").val("");
+	$("#salida").val("");
 	setTimeout('document.location.reload()',2000);
 
 }
 
 function registrar_asistencia(e){
-     e.preventDefault();//no se activara la accion predeterminada 
-     $("#btnGuardar").prop("disabled",true);
-     var formData=new FormData($("#formulario")[0]);
+    e.preventDefault();//no se activara la accion predeterminada 
+    $("#btnGuardar").prop("disabled",true);
+    var formData=new FormData($("#formulario")[0]);
 
-     $.ajax({
-     	url: "../ajax/asistencia.php?op=registrar_asistencia",
+    $.ajax({
+    	url: "../ajax/asistencia.php?op=registrar_asistencia",
      	type: "POST",
      	data: formData,
      	contentType: false,
      	processData: false,
 
      	success: function(datos){
-     			$("#movimientos").html(datos);
+     		$("#movimientos").html(datos);
      		//bootbox.alert(datos);
      	}
-     });
-     limpiar();
+    });
+    limpiar();
 }
-
-
-
-
 
 init();

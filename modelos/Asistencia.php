@@ -9,8 +9,6 @@ public function __construct(){
 
 }
 
-
-
 public function verificarcodigo_persona($codigo_persona){
  	$sql = "SELECT * FROM usuarios WHERE codigo_persona='$codigo_persona'";
 	return ejecutarConsultaSimpleFila($sql);
