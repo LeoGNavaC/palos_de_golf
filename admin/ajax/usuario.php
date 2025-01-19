@@ -228,21 +228,19 @@ switch ($_GET["op"]) {
 
 	break;
 
-	case 'salir':
-			
-			$id=$_SESSION['idusuario'];
-			$sql="UPDATE usuarios SET idusuario='0' WHERE idusuario='$id'";
-			echo $sql; 
-	 		ejecutarConsulta($sql);	 		
+	case 'salir':		
+		$id=$_SESSION['idusuario'];
+		$sql="UPDATE usuarios SET idusuario='0' WHERE idusuario='$id'";
 
+		//echo $sql;
 
+	 	ejecutarConsulta($sql);	 		
 		//Limpiamos las variables de sesión   
         session_unset();
         //Destruìmos la sesión
         session_destroy();
         //Redireccionamos al login
         header("Location: ../index.php");
-
 	break;
 
 }
