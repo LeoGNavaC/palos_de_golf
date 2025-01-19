@@ -66,9 +66,7 @@ require 'header.php';
 
 require 'footer.php';
  ?>
-
  <script src="scripts/asistencia.js"></script>
- 
  <?php 
 }
 

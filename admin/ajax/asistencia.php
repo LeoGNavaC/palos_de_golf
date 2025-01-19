@@ -1,13 +1,14 @@
 <?php 
+ob_start();//almacenamiento en bufer de salida
 require_once "../modelos/Asistencia.php";
-if (strlen(session_id())<1) 
+if (strlen(session_id())<1){
 	session_start();
+}
+
 $asistencia=new Asistencia();
 
 $codigo_persona=isset($_POST["codigo_persona"])? limpiarCadena($_POST["codigo_persona"]):"";
 $iddepartamento=isset($_POST["iddepartamento"])? limpiarCadena($_POST["iddepartamento"]):"";
-
-
 
 switch ($_GET["op"]) {
 	case 'guardaryeditar':
@@ -179,6 +180,5 @@ switch ($_GET["op"]) {
 				echo '<option value=' . $reg->codigo_persona.'>'.$reg->nombre.' '.$reg->apellidos.'</option>';
 			}
 			break;
-
 }
 ?>
