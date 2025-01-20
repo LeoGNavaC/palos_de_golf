@@ -14,7 +14,7 @@
 	if (!function_exists('ejecutarConsulta')) {
 		Function ejecutarConsulta($sql){ 
 			global $conexion;
-			$query=$conexion->query($sql) or die("Error en la consulta SQL hola mundo: " . $conexion->error);
+			$query=$conexion->query($sql) or die("Error en la consulta SQL, se repitio el ID: " . $conexion->error);
 			return $query;
 		} 
 

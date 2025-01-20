@@ -237,16 +237,17 @@
 
             <script>
               const form = document.getElementById('formulario');
-              const inputF = document.getElementById('imagen');
+              const inputF = document.getElementById('imagen').value;
 
               //Le agregamos un evento al formulario
               form.addEventListener('submit', function (e){
                 //e.preventDefault();//esto evita que se envie el formulario para solo hacer la prueba
 
                 //limpiamos el input de tipo file
-                inputF.value = '';
+                //inputF.value = '';
 
-                alert('Se esta limpiando el input');
+                //alert('Se esta limpiando el input');
+                this.submit(); //Enviamos el formulario de forma manual despues de limpiar
               });
             </script>
           </div>
