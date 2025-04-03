@@ -230,7 +230,7 @@ switch ($_GET["op"]) {
 
 	case 'salir':		
 		$id=$_SESSION['idusuario'];
-		$sql="UPDATE usuarios SET idusuario='0' WHERE idusuario='$id'";
+		$sql="UPDATE usuarios SET idusuario='$id' WHERE idusuario='$id'";
 
 		//echo $sql;
 
