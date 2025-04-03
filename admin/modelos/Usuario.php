@@ -25,18 +25,22 @@ public function editar($idusuario,$accion,$nombre,$apellidos,$funda_bolsa,$login
 	 return ejecutarConsulta($sql);
 
 }
+
 public function editar_clave($idusuario,$clavehash){
 	$sql="UPDATE usuarios SET password='$clavehash' WHERE idusuario='$idusuario'";
 	return ejecutarConsulta($sql);
 }
+
 public function mostrar_clave($idusuario){
 	$sql="SELECT idusuario, password FROM usuarios WHERE idusuario='$idusuario'";
 	return ejecutarConsultaSimpleFila($sql);
 }
+
 public function desactivar($idusuario){
 	$sql="UPDATE usuarios SET estado='0' WHERE idusuario='$idusuario'";
 	return ejecutarConsulta($sql);
 }
+
 public function activar($idusuario){
 	$sql="UPDATE usuarios SET estado='1' WHERE idusuario='$idusuario'";
 	return ejecutarConsulta($sql);
@@ -50,7 +54,8 @@ public function mostrar($idusuario){
 
 //listar registros
 public function listar(){
-	$sql="SELECT * FROM usuarios ORDER BY CAST(login AS UNSIGNED) ASC";
+	//$sql="SELECT * FROM usuarios ORDER BY CAST(login AS UNSIGNED) ASC";
+	$sql="SELECT u.*, d.nombre AS nombre_departamento FROM usuarios u JOIN departamento d ON u.iddepartamento = d.iddepartamento ORDER BY CAST(login AS UNSIGNED) ASC";
 	return ejecutarConsulta($sql);
 }
 

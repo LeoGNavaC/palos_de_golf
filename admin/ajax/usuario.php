@@ -35,37 +35,6 @@ $usuariocreado=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $idmensaje=isset($_POST["idmensaje"])? limpiarCadena($_POST["idmensaje"]):"";
 
 switch ($_GET["op"]) {
-	/*
-	function limpiarCadena($cadena){
-		return htmlspecialchars(trim($cadena), ENT_QUOTES, 'UTF-8');
-	}*/
-/*
-	case 'guardaryeditar':
-
-		if (!file_exists($_FILES['imagen']['tmp_name'])|| !is_uploaded_file($_FILES['imagen']['tmp_name'])) {
-			$imagen=$_POST["imagenactual"];
-		} else {
-
-			$ext=explode(".", $_FILES["imagen"]["name"]);
-			if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png"){
-				$imagen = round(microtime(true)).'.'. end($ext);
-				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen);
-		 	}
-		}
-
-		//Hash SHA256 para la contraseña
-		$clavehash=hash("SHA256", $password);
-
-		if (empty($idusuario)) {
-			$idusuario=$_SESSION["idusuario"];
-			$rspta=$usuario->insertar($accion,$nombre,$apellidos,$funda_bolsa,$login,$hibridos,$iddepartamento,$idtipousuario,$email,$funda_maderas,$funda_hibridos,$fierros,$fundas_fierros,$put,$fundas_put,$tfundas,$sombrilla,$toalla,$sbolas,$laser,$notas,$clavehash,$imagen,$usuariocreado,$codigo_persona);
-			echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar todos los datos del usuario";
-		}
-		else {
-			$rspta=$usuario->editar($idusuario,$accion,$nombre,$apellidos,$funda_bolsa,$login,$hibridos,$iddepartamento,$idtipousuario,$email,$funda_maderas,$funda_hibridos,$fierros,$fundas_fierros,$put,$fundas_put,$fundas_put,$tfundas,$sombrilla,$toalla,$sbolas,$laser,$notas,$imagen,$usuariocreado,$codigo_persona);
-			echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar los datos";
-		}
-	break;*/
 
 	case 'guardaryeditar':
 
@@ -160,25 +129,26 @@ switch ($_GET["op"]) {
 				"1"=>$reg->codigo_persona,
 				"2"=>$reg->accion,
 				"3"=>$reg->nombre,
-				"4"=>$reg->apellidos,
-				"5"=>$reg->funda_bolsa,
-				"6"=>$reg->email,
-				"7"=>$reg->funda_maderas,
-				"8"=>$reg->hibridos,
-				"9"=>$reg->funda_hibridos,
-				"10"=>$reg->fierros,
-				"11"=>$reg->fundas_fierros,
-				"12"=>$reg->put,
-				"13"=>$reg->fundas_put,
-				"14"=>$reg->tfundas,
-				"15"=>$reg->sombrilla,
-				"16"=>$reg->toalla,
-				"17"=>$reg->sbolas,
-				"18"=>$reg->laser,
-				"19"=>$reg->notas,
-				"20"=>"<img src='../files/usuarios/".$reg->imagen."' height='80px' width='80px'>",
-				"21"=>$reg->fecha_update,
-				"22"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
+				"4"=>$reg->nombre_departamento,
+				"5"=>$reg->apellidos,
+				"6"=>$reg->funda_bolsa,
+				"7"=>$reg->email,
+				"8"=>$reg->funda_maderas,
+				"9"=>$reg->hibridos,
+				"10"=>$reg->funda_hibridos,
+				"11"=>$reg->fierros,
+				"12"=>$reg->fundas_fierros,
+				"13"=>$reg->put,
+				"14"=>$reg->fundas_put,
+				"15"=>$reg->tfundas,
+				"16"=>$reg->sombrilla,
+				"17"=>$reg->toalla,
+				"18"=>$reg->sbolas,
+				"19"=>$reg->laser,
+				"20"=>$reg->notas,
+				"21"=>"<img src='../files/usuarios/".$reg->imagen."' height='80px' width='80px'>",
+				"22"=>$reg->fecha_update,
+				"23"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
 				);
 		}
 

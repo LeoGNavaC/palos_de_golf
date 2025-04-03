@@ -2,33 +2,34 @@ var tabla;
 
 //funcion que se ejecuta al inicio
 function init(){
-   mostrarform(false);
-   mostrarform_clave(false);
-   listar();
-$("#formularioc").on("submit",function(c){
-   	editar_clave(c);
-   })
-   $("#formulario").on("submit",function(e){
-   	guardaryeditar(e);
-   })
+	mostrarform(false);
+	mostrarform_clave(false);
+	listar();
+	$("#formularioc").on("submit",function(c){
+		editar_clave(c);
+	})
+	
+	$("#formulario").on("submit",function(e){
+		guardaryeditar(e);
+	})
 
-   $("#imagenmuestra").hide();
-//mostramos los permisos
-$.post("../ajax/usuario.php?op=permisos&id=", function(r){
-	$("#permisos").html(r);
-});
+	$("#imagenmuestra").hide();
+		//mostramos los permisos
+		$.post("../ajax/usuario.php?op=permisos&id=", function(r){
+		$("#permisos").html(r);
+	});
 
    //cargamos los items al select departamento
-   $.post("../ajax/departamento.php?op=selectDepartamento", function(r){
-   	$("#iddepartamento").html(r);
-   	$('#iddepartamento').selectpicker('refresh'); 
-   });
+	$.post("../ajax/departamento.php?op=selectDepartamento", function(r){
+		$("#iddepartamento").html(r);
+		$('#iddepartamento').selectpicker('refresh'); 
+	});
 
-   //cargamos los items al select tipousuario
-   $.post("../ajax/tipousuario.php?op=selectTipousuario", function(r){
-   	$("#idtipousuario").html(r);
-   	$('#idtipousuario').selectpicker('refresh'); 
-   });
+	//cargamos los items al select tipousuario
+	$.post("../ajax/tipousuario.php?op=selectTipousuario", function(r){
+		$("#idtipousuario").html(r);
+		$('#idtipousuario').selectpicker('refresh'); 
+	});
 
 }
 
