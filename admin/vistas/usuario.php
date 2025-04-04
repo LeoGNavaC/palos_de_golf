@@ -88,12 +88,12 @@
           </div>
 
           <div class="panel-body" id="formularioregistros">
-            <form action="" name="formulario" id="formulario" method="POST">
+            <form action="" name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
               <div class="form-group col-lg-6 col-md-6 col-xs-12">
                 <label for="">Tipo usuario(*):</label>
 
-              <select name="idtipousuario" id="idtipousuario" class="form-control select-picker" >
-              </select>
+                <select name="idtipousuario" id="idtipousuario" class="form-control select-picker">
+                </select>
               </div>
 
               <div class="form-group col-lg-6 col-md-6 col-xs-12">
@@ -225,7 +225,7 @@
               <div class="form-group col-lg-6 col-md-6 col-xs-12">
                 <label for="">Imagen:</label>
               
-                <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="imagen" id="imagen">
+                <input class="form-control filestyle" data-buttonText="Seleccionar foto" type="file" name="imagen" id="imagen" accept="image/*">
                 <input type="hidden" name="imagenactual" id="imagenactual">
               
                 <img src="" alt="" width="150px" height="120" id="imagenmuestra">
@@ -241,15 +241,8 @@
               const form = document.getElementById('formulario');
               const inputF = document.getElementById('imagen').value;
 
-              //Le agregamos un evento al formulario
               form.addEventListener('submit', function (e){
-                //e.preventDefault();//esto evita que se envie el formulario para solo hacer la prueba
-
-                //limpiamos el input de tipo file
-                //inputF.value = '';
-
-                //alert('Se esta limpiando el input');
-                this.submit(); //Enviamos el formulario de forma manual despues de limpiar
+                this.submit();
               });
             </script>
           </div>

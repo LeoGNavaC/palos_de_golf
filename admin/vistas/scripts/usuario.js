@@ -5,6 +5,7 @@ function init(){
 	mostrarform(false);
 	mostrarform_clave(false);
 	listar();
+
 	$("#formularioc").on("submit",function(c){
 		editar_clave(c);
 	})
@@ -14,10 +15,24 @@ function init(){
 	})
 
 	$("#imagenmuestra").hide();
-		//mostramos los permisos
-		$.post("../ajax/usuario.php?op=permisos&id=", function(r){
+	//mostramos los permisos
+	$.post("../ajax/usuario.php?op=permisos&id=", function(r){
 		$("#permisos").html(r);
 	});
+
+	//mirar la imagen
+	document.getElementById('imagen').addEventListener('change', function(event) {
+		const file = event.target.files[0];
+		if (file) {
+		  const reader = new FileReader();
+		  reader.onload = function(e) {
+			const img = document.getElementById('imagenmuestra');
+			img.src = e.target.result;
+			img.style.display = 'block';
+		  }
+		  reader.readAsDataURL(file);
+		}
+	  });	  
 
    //cargamos los items al select departamento
 	$.post("../ajax/departamento.php?op=selectDepartamento", function(r){
@@ -209,7 +224,6 @@ function mostrar(idusuario){
 			$("#notas").val(data.notas);
             //$("#login").val(data.login);
             $("#codigo_persona").val(data.codigo_persona);
-			$("#imagen").val(data.imagen);
             $("#imagenmuestra").show();
             $("#imagenmuestra").attr("src","../files/usuarios/"+data.imagen);
             $("#imagenactual").val(data.imagen);
@@ -265,4 +279,3 @@ function generar(longitud)
 }
 
 init();
-
