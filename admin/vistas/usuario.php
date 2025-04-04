@@ -33,6 +33,7 @@
                 <th>ID</th>
                 <th>Accion</th>
                 <th>Nombre</th>
+                <th>Departamento</th>
                 <th>Bolsa</th>
                 <th>Funda Bolsa</th>
                 <th>Maderas</th>
@@ -62,6 +63,7 @@
                 <th>ID</th>
                 <th>Accion</th>
                 <th>Nombre</th>
+                <th>Departamento</th>
                 <th>Bolsa</th>
                 <th>Funda Bolsa</th>
                 <th>Maderas</th>
